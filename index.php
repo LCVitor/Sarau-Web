@@ -11,13 +11,6 @@ $route = new Router(url(), ":");
 $route->namespace("Source\App");
 // Rotas amigáveis da área pública
 $route->get("/", "Web:home");
-$route->get("/sobre", "Web:about");
-$route->get("/contato", "Web:contact");
-$route->get("/localizacao", "Web:location");
-$route->get("/carrinho-compras","Web:cart");
-$route->get("/servicos","Web:services");
-$route->get("/faqs","Web:faqs");
-$route->get("/login","Web:login");
 
 // Rotas amigáveis da área restrita
 $route->group("/app");

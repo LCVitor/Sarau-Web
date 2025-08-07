@@ -1,0 +1,62 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F5F7FA;
+}
+
+#section {
+    position: relative;
+    height: 800px;
+    width: 100%;
+    overflow: hidden;
+}
+
+#creation-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: url("/sarau-web/assets/img/creation.png") no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(4px);
+    opacity: 0.8;
+    z-index: 0;
+}
+
+#second {
+    position: relative;
+    z-index: 1;
+    color: #000;
+    text-align: center;
+    padding: 10px;
+}
+
+#primary {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #00000054;
+}
+
+.content {
+    width: 100%;
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: black;
+    color: #FFF;
+}
