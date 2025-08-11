@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sarau Web</title>
     <link rel="stylesheet" href="<?= url("assets/css/_shered/theme.css"); ?>">
+    <link rel="stylesheet" href="<?= url("assets/css/_shered/global.css"); ?>">
     <script type="module" src="<?= url("assets/js/web/theme.js"); ?>" async></script>
 </head>
 <body> 
@@ -13,19 +14,24 @@
 
         <div id="primary">
             <div id="container-logo">
-                <img src="#" alt="Logo">
+                <img src="#" alt="Logo bem legal aqui!">
             </div>
             <div id="functions">
-                <button>Entrar</button>
+                <button class="button type-1">ENTRAR</button>
             </div>
         </div>
         <div id="second">
-            <h1>Sarau Cultural - 2025</h1>
+            <h1>Título legal bem aqui!</h1>
         </div>
     </div>
 
     <div class="content">
-        <!-- <h1>Sarau Cultural - 2025</h1> -->
+        <div class="section">
+            Coisas aqui!
+        </div>
+        <div class="section">
+            Coisas aqui!
+        </div>
     </div>
 
     <footer>
