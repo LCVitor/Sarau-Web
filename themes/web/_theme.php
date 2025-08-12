@@ -6,7 +6,7 @@
     <title>Sarau Web</title>
     <link rel="stylesheet" href="<?= url("assets/css/_shered/theme.css"); ?>">
     <link rel="stylesheet" href="<?= url("assets/css/_shered/global.css"); ?>">
-    <script type="module" src="<?= url("assets/js/web/theme.js"); ?>" async></script>
+    <script type="module" src="<?= url("assets/js/web/login.js"); ?>" async></script>
 </head>
 <body> 
     <div id="section">
@@ -17,7 +17,7 @@
                 <img src="#" alt="Logo bem legal aqui!">
             </div>
             <div id="functions">
-                <button class="button type-1">ENTRAR</button>
+                <button id="login-btn" class="button type-1">ENTRAR</button>
             </div>
         </div>
         <div id="second">
@@ -31,6 +31,20 @@
         </div>
         <div class="section">
             Coisas aqui!
+        </div>
+    </div>
+
+    <div id="container-modal">
+        <button id="close-btn" class="button type-2">X</button>
+        <div class="modal">
+            <h1>Login</h1>
+            <form>
+                <label>E-mail</label>
+                <input type="email" name="email" id="email">
+                <label>Senha</label>
+                <input type="password" name="password" id="password">
+                <input type="submit" value="ENTRAR">
+            </form>
         </div>
     </div>
 

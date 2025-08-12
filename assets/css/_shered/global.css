@@ -1,3 +1,25 @@
+#container-modal {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 10px;
+    background-color: #00000095;
+    backdrop-filter: blur(8px);
+    z-index: 3;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    width: 35%;
+    background-color: #FFF;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 4;
+}
 
 /* 
 COMPONENTES 
@@ -23,4 +45,21 @@ COMPONENTES
 .button.type-1:hover, .button.type-1:focus {
     background-color: #2f81edb0;
     border: 1px solid #2f81ed;
+}
+
+.button.type-2 {
+    background-color: #ffffffa5;
+    color: #000;
+    text-align: center;
+    border-radius: 1px;
+    border: 1px solid #00000095;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
