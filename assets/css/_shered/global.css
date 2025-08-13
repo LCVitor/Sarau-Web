@@ -19,6 +19,37 @@
     border-radius: 5px;
     padding: 10px;
     z-index: 4;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    border-top: 1px solid #515050;
+    margin-top: 5px;
+    padding: 8px;
+}
+
+.form .area {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+}
+
+.input {
+    border: none;
+    outline: none;
+}
+
+.input.type-1 {
+    border-radius: 5px;
+    border: 1px solid #515050;
 }
 
 /* 

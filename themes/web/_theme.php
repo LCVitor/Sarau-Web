@@ -38,11 +38,17 @@
         <button id="close-btn" class="button type-2">X</button>
         <div class="modal">
             <h1>Login</h1>
-            <form>
-                <label>E-mail</label>
-                <input type="email" name="email" id="email">
-                <label>Senha</label>
-                <input type="password" name="password" id="password">
+            <form class="form">
+                <div class="area">
+                    <label>E-mail</label>
+                    <input type="email" name="email" class="input type-1" id="email">
+                </div>
+
+                <div class="area">
+                    <label>Senha</label>
+                    <input type="password" name="password" class="input type-1" id="password">
+                </div>
+
                 <input type="submit" value="ENTRAR">
             </form>
         </div>
