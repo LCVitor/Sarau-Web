@@ -35,21 +35,22 @@
     </div>
 
     <div id="container-modal">
-        <button id="close-btn" class="button type-2">X</button>
         <div class="modal">
             <h1>Login</h1>
+            <p>Preencha as informações abaixo para acessar o sistema!</p>
+            <button id="close-btn" class="button type-2">&times;</button>
             <form class="form">
                 <div class="area">
                     <label>E-mail</label>
-                    <input type="email" name="email" class="input type-1" id="email">
+                    <input type="email" placeholder="Email para login" name="email" class="input type-1" id="email">
                 </div>
 
                 <div class="area">
                     <label>Senha</label>
-                    <input type="password" name="password" class="input type-1" id="password">
+                    <input type="password" placeholder="Senha para login" name="password" class="input type-1" id="password">
                 </div>
 
-                <input type="submit" value="ENTRAR">
+                <input type="submit" class="button type-3" value="ENTRAR">
             </form>
         </div>
     </div>
