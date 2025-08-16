@@ -39,7 +39,7 @@
             <h1>Login</h1>
             <p>Preencha as informações abaixo para acessar o sistema!</p>
             <button id="close-btn" class="button type-2">&times;</button>
-            <form class="form">
+            <form id="form" class="form">
                 <div class="area">
                     <label>E-mail</label>
                     <input type="email" placeholder="Email para login" name="email" class="input type-1" id="email">

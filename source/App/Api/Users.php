@@ -2,6 +2,8 @@
 
 namespace Source\App\Api;
 
+use Exception;
+use CoffeeCode;
 use Source\Core\TokenJWT;
 use Source\Models\User;
 use Source\Support\ImageUploader;
@@ -90,25 +92,43 @@ class Users extends Api
 
     }
 
-    public function loginUser (array $data) {
+    public function login(array $data) 
+    {
         $user = new User();
+        $path = "Sem nada por enquanto...";
 
-        if(!$user->login($data["email"],$data["password"])){
+        if (!$user->login($data["email"], $data["password"])) {
             $this->back([
                 "type" => "error",
                 "message" => $user->getMessage()
             ]);
             return;
         }
+
+        switch ($user->users_join_roles($user->getId())) {
+            case "PARTICIPANT":
+                $path = "CAMINHO DE PARTICIPANTE";
+                break;
+            
+            case "ADMIN":
+                $path = "CAMINHO DE ADMIN";
+                break;
+
+            default:
+                $path = "Error!";
+                break;
+        }
+
         $token = new TokenJWT();
         $this->back([
             "type" => "success",
             "message" => $user->getMessage(),
+            "path" => $path,
             "user" => [
                 "id" => $user->getId(),
                 "name" => $user->getName(),
                 "email" => $user->getEmail(),
-                "photo" => $user->getPhoto(),
+                "userType" => "Nada por enquanto...", 
                 "token" => $token->create([
                     "id" => $user->getId(),
                     "name" => $user->getName(),
@@ -116,7 +136,6 @@ class Users extends Api
                 ])
             ]
         ]);
-
     }
 
     public function updateUser(array $data)

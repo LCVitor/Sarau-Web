@@ -11,24 +11,32 @@ class User extends Model {
     private $name;
     private $email;
     private $password;
-    private $address;
-    private $photo;
+    private $gender;
+    private $number_phone;
+    private $birth_date;
+    private $id_role;
+
+    private $message;
 
     public function __construct(
-        int $id = null,
-        string $name = null,
-        string $email = null,
-        string $password = null,
-        string $address = null,
-        string $photo = null
+        ?int $id = null,
+        ?string $name = null,
+        ?string $email = null,
+        ?string $password = null,
+        ?string $gender = null,
+        ?string $number_phone = null,
+        ?string $birth_date = null,
+        ?int $id_role = null
     )
     {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
-        $this->address = $address;
-        $this->photo = $photo;
+        $this->gender = $gender;
+        $this->number_phone = $number_phone;
+        $this->birth_date = $birth_date;
+        $this->id_role = $id_role;
         $this->entity = "users";
     }
 
@@ -72,24 +80,9 @@ class User extends Model {
         $this->password = $password;
     }
 
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(?string $address): void
-    {
-        $this->address = $address;
-    }
-
     public function getMessage(): ?string
     {
         return $this->message;
-    }
-
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
     }
 
     public function insert(): ?int
@@ -133,17 +126,27 @@ class User extends Model {
 
     public function login(string $email, string $password): bool
     {
-        $query = "SELECT * FROM users WHERE email = :email";
+        $query = "SELECT * FROM {$this->entity} WHERE email = :email";
         $conn = Connect::getInstance();
         $stmt = $conn->prepare($query);
         $stmt->bindParam(":email", $email);
         $stmt->execute();
         $result = $stmt->fetch();
 
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $this->message = "E-mail inválido!";
+            return false;
+        }
+
         if (!$result) {
             $this->message = "E-mail não cadastrado!";
             return false;
         }
+
+        // if ($result->status != "active") {
+        //     $this->message = "Conta inativa! Use uma válida ou crie uma nova.";
+        //     return false;
+        // }
 
         if (!password_verify($password, $result->password)) {
             $this->message = "Senha incorreta!";
@@ -153,18 +156,37 @@ class User extends Model {
         $this->setId($result->id);
         $this->setName($result->name);
         $this->setEmail($result->email);
-        $this->setPhoto($result->photo);
 
-        $this->message = "Usuário logado com sucesso!";
+        // $this->message = "Usuário logado com sucesso!";
+        // return true;
 
-        return true;
-
+        try {
+            $stmt->execute();
+            $this->message = "Usuário logado com sucesso!";
+            return true;
+        } catch (PDOException) {
+            $this->message = "Por favor, informe todos os campos!";
+            return false;
+        }
     }
 
-    public function setPhoto(?string $photo): void
+    public function users_join_roles ($id_user) : string
     {
-        $this->photo = $photo;
+        $conn = Connect::getInstance();
+
+        $query = "SELECT roles.name FROM users INNER JOIN roles ON users.id_role = roles.id WHERE users.id = :id";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(":id", $id_user);
+        $stmt->execute();
+        $result = $stmt->fetch();
+
+        return $result->name ?? '';
     }
+
+    // public function setPhoto(?string $photo): void
+    // {
+    //     $this->photo = $photo;
+    // }
 
     public function update () : bool
     {
@@ -187,13 +209,12 @@ class User extends Model {
         }
 
         $query = "UPDATE users 
-                  SET name = :name, email = :email, address = :address
+                  SET name = :name, email = :email
                   WHERE id = :id";
 
         $stmt = $conn->prepare($query);
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":email", $this->email);
-        $stmt->bindParam(":address", $this->address);
         $stmt->bindParam(":id", $this->id);
 
         try {
@@ -247,36 +268,36 @@ class User extends Model {
 
     }
 
-    public function updatePhoto (): bool
-    {
-        // selecionar o usuário, se tiver foto, apagar para gravar nova
-        $query = "SELECT photo FROM users WHERE id = :id";
-        $stmt = Connect::getInstance()->prepare($query);
-        $stmt->bindParam(":id", $this->id);
-        $stmt->execute();
-        $result = $stmt->fetch();
-        // ser houver foto, apagar do diretório
-        if ($result->photo) {
-            unlink(__DIR__ . "/../../{$result->photo}");
-        }
+    // public function updatePhoto (): bool
+    // {
+    //     // selecionar o usuário, se tiver foto, apagar para gravar nova
+    //     $query = "SELECT photo FROM users WHERE id = :id";
+    //     $stmt = Connect::getInstance()->prepare($query);
+    //     $stmt->bindParam(":id", $this->id);
+    //     $stmt->execute();
+    //     $result = $stmt->fetch();
+    //     // ser houver foto, apagar do diretório
+    //     if ($result->photo) {
+    //         unlink(__DIR__ . "/../../{$result->photo}");
+    //     }
 
-        $query = "UPDATE users 
-                  SET photo = :photo 
-                  WHERE id = :id";
+    //     $query = "UPDATE users 
+    //               SET photo = :photo 
+    //               WHERE id = :id";
 
-        $stmt = Connect::getInstance()->prepare($query);
-        $stmt->bindParam(":photo", $this->photo);
-        $stmt->bindParam(":id", $this->id);
+    //     $stmt = Connect::getInstance()->prepare($query);
+    //     $stmt->bindParam(":photo", $this->photo);
+    //     $stmt->bindParam(":id", $this->id);
 
-        try {
-            $stmt->execute();
-            $this->message = "Foto atualizada com sucesso!";
-            return true;
-        } catch (PDOException $exception) {
-            $this->message = "Erro ao atualizar: {$exception->getMessage()}";
-            return false;
-        }
+    //     try {
+    //         $stmt->execute();
+    //         $this->message = "Foto atualizada com sucesso!";
+    //         return true;
+    //     } catch (PDOException $exception) {
+    //         $this->message = "Erro ao atualizar: {$exception->getMessage()}";
+    //         return false;
+    //     }
 
-    }
+    // }
 
 }

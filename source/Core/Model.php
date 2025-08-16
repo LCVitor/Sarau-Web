@@ -34,7 +34,7 @@ abstract class Model
     }
     public function insert(): ?int
     {
-        $values = get_object_vars($this);// pegar os valores dos atributos e inserir em um arra
+        $values = get_object_vars($this);
         array_shift($values);
         array_shift($values);
 
