@@ -14,4 +14,4 @@ function close(modal) {
     });
 }
 
-// console.log("Teste do functions");
+export let userAuth = JSON.parse(localStorage.getItem("user"));

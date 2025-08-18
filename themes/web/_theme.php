@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <div class="content">
+    <div class="content type-1">
         <div class="section">
             Coisas aqui!
         </div>

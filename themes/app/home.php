@@ -1,8 +1,13 @@
 <?php
     echo $this->layout("_theme");
 ?>
+<?php
+$this->start("home");
+?>
+<script type="module" src=<?= url("assets/js/app/home.js"); ?> async></script>
+<link rel="stylesheet" href=<?= url("assets/css/app/home.css"); ?>>
+<?php
+$this->end();
+?>
 
-<div class="content-private">
-    <!-- Conteúdo principal da área privada aqui -->
-    Conteúdo principal da área privada aqui
-</div>
+<h1>Eu sou a home</h1>

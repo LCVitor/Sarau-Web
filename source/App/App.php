@@ -15,7 +15,6 @@ class App
 
     public function home ()
     {
-        //echo "<h1>Eu sou a Home...</h1>";
         echo $this->view->render("home",[]);
     }
 
@@ -24,9 +23,14 @@ class App
         echo $this->view->render("profile",[]);
     }
 
-    public function cart (array $data)
+    public function registrations ()
     {
-        echo $this->view->render("cart", []);
+        echo $this->view->render("registrations", []);
+    }
+
+    public function events ()
+    {
+        echo $this->view->render("events", []);
     }
 
 }

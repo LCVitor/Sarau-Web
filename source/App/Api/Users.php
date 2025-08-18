@@ -107,11 +107,11 @@ class Users extends Api
 
         switch ($user->users_join_roles($user->getId())) {
             case "PARTICIPANT":
-                $path = "CAMINHO DE PARTICIPANTE";
+                $path = "http://localhost/Sarau-Web/app/";
                 break;
             
             case "ADMIN":
-                $path = "CAMINHO DE ADMIN";
+                $path = "http://localhost/Sarau-Web/adm/";
                 break;
 
             default:

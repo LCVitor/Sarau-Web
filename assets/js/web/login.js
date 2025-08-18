@@ -13,5 +13,14 @@ form.addEventListener("submit", e => {
         body: new FormData(form),
     }).then(res => res.json().then(data => {
         console.log(data);
+
+        if (data.type == "success") {
+            localStorage.setItem("user", JSON.stringify(data.user));
+
+            setTimeout(() => {
+                // location.href = data.path;
+                console.log(data.path);
+            }, 3000)
+        }
     }))
 })

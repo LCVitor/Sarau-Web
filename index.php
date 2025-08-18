@@ -9,15 +9,13 @@ ob_start();
 $route = new Router(url(), ":");
 
 $route->namespace("Source\App");
-// Rotas amigáveis da área pública
 $route->get("/", "Web:home");
 
-// Rotas amigáveis da área restrita
 $route->group("/app");
-
 $route->get("/", "App:home");
 $route->get("/perfil", "App:profile");
-$route->get("/carrinho", "App:cart");
+$route->get("/inscrições", "App:registrations");
+$route->get("/eventos", "App:events");
 
 $route->group(null);
 
