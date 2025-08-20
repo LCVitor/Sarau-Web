@@ -32,7 +32,7 @@
     </div>
 </nav>
 <!-- <div id="toast-container"></div> futuro -->
-<div class="content type-2">
+<div class="main-content">
     <?php
     echo $this->section("content");
     ?>

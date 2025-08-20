@@ -61,11 +61,7 @@ body {
     border: 1px solid #a3a3a3;
 }
 
-.content {
-    width: 100%;
-}
-
-.content.type-2 {
+.main-content {
     /* background-color: red; */
     /* height: 100%; */
     width: 80%;
@@ -73,6 +69,10 @@ body {
     right: 0;
     top: 0;
     padding: 10px;
+}
+
+.content {
+    width: 100%;
 }
 
 .content.type-1 {

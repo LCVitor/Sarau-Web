@@ -10,4 +10,15 @@ $this->start("home");
 $this->end();
 ?>
 
-<h1>Eu sou a home</h1>
+<div class="section primary">
+    <div class="info primary">Alguma coisa legal!</div>
+    <button class="button type-3 special">INSCREVER-SE</button>
+</div>
+
+<div class="section secondary">
+    <div class="info secondary">Coisa aqui!</div>
+    <div class="info secondary">Coisa Aqui!</div>
+    <div class="info special">Coisa aqui!</div>
+</div>
+
+<div class="notification">Notificações aqui!</div>
