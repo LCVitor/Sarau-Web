@@ -32,6 +32,7 @@ abstract class Model
                   WHERE id = {$id}";
         return $conn->query($query)->fetch();
     }
+    
     public function insert(): ?int
     {
         $values = get_object_vars($this);

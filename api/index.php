@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 use CoffeeCode\Router\Router;
+use Source\App\Api\Users;
 
 $route = new Router(url(),":");
 
@@ -27,6 +28,7 @@ $route->group("/users");
 
 $route->get("/", "Users:listUsers");
 $route->post("/login", "Users:login"); //localhost/Sarau-Web/api/users/login
+$route->get("/findById", "Users:findById");
 // $route->post("/","Users:createUser");
 // $route->get("/me","Users:getUser");
 // $route->post("/login","Users:loginUser");

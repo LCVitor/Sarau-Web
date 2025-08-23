@@ -6,7 +6,7 @@
     <title>..:: Página do participante ::..</title>
     <link rel="stylesheet" href="<?= url("assets/css/_shered/theme.css"); ?>">
     <link rel="stylesheet" href="<?= url("assets/css/_shered/global.css"); ?>">
-    <script type="module" src="<?= url("assets/js/web/login.js"); ?>" async></script>
+    <script type="module" src="<?= url("assets/js/app/home.js"); ?>" async></script>
     
     <?php if ($this->section("home")): ?>
         <?= $this->section("home"); ?>
@@ -19,7 +19,7 @@
         <div class="user-photo">
             <img src="" alt="">
         </div>
-        <span>Olá, Fulano!</span>
+        <span></span>
     </div>
     <div class="container-href">
         <a href="<?= url("/app/"); ?>">Home</a>
@@ -31,7 +31,7 @@
         <img src="#" alt="Logo legal aqui!">
     </div>
 </nav>
-<!-- <div id="toast-container"></div> futuro -->
+<div id="toast-container"></div>
 <div class="main-content">
     <?php
     echo $this->section("content");

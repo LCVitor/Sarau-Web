@@ -24,7 +24,7 @@
             <h1>Título legal bem aqui!</h1>
         </div>
     </div>
-
+    
     <div class="content type-1">
         <div class="section">
             Coisas aqui!
@@ -55,6 +55,8 @@
         </div>
     </div>
 
+    <div id="toast-container"></div>
+    
     <footer>
         <p>© 2025 Sarau Web. Todos os direitos reservados.</p>
     </footer>

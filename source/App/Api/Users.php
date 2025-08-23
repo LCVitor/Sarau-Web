@@ -15,7 +15,7 @@ class Users extends Api
         parent::__construct();
     }
 
-    public function getUser ()
+    public function findById ()
     {
         $this->auth();
 
@@ -24,13 +24,14 @@ class Users extends Api
 
         $this->back([
             "type" => "success",
-            "message" => "Usuário autenticado",
+            "message" => "Todas as informações",
             "user" => [
                 "id" => $this->userAuth->id,
                 "name" => $user->name,
                 "email" => $user->email,
-                "address" => $user->address,
-                "photo" => $user->photo
+                "gender" => $user->gender,
+                "number_phone" => $user->number_phone,
+                "birth_date" => $user->birth_date,
             ]
         ]);
 
@@ -96,6 +97,7 @@ class Users extends Api
     {
         $user = new User();
         $path = "Sem nada por enquanto...";
+        $user_type = ""; 
 
         if (!$user->login($data["email"], $data["password"])) {
             $this->back([
@@ -119,6 +121,8 @@ class Users extends Api
                 break;
         }
 
+        $user_type = $user->users_join_roles($user->getId());
+
         $token = new TokenJWT();
         $this->back([
             "type" => "success",
@@ -128,7 +132,7 @@ class Users extends Api
                 "id" => $user->getId(),
                 "name" => $user->getName(),
                 "email" => $user->getEmail(),
-                "userType" => "Nada por enquanto...", 
+                "userType" => $user_type, 
                 "token" => $token->create([
                     "id" => $user->getId(),
                     "name" => $user->getName(),

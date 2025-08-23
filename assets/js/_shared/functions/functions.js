@@ -15,3 +15,7 @@ function close(modal) {
 }
 
 export let userAuth = JSON.parse(localStorage.getItem("user"));
+
+export function getFirstName(fullName) {
+    return fullName.split(' ')[0];
+}

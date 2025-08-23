@@ -1,6 +1,4 @@
-// fetch("http://localhost/Sarau-Web/api/users", {
-//     method: "GET"
-// }).then(response => {response.json().then(data => {console.log(data);})});
+import { Toast } from "../_shared/classes/Toast.js";
 import { showModal } from "../_shared/functions/functions.js";
 showModal("container-modal", "login-btn");
 
@@ -13,12 +11,13 @@ form.addEventListener("submit", e => {
         body: new FormData(form),
     }).then(res => res.json().then(data => {
         console.log(data);
-
+        const toast = new Toast(data.message, data.type);
+        toast.show();
         if (data.type == "success") {
             localStorage.setItem("user", JSON.stringify(data.user));
 
             setTimeout(() => {
-                // location.href = data.path;
+                location.href = data.path;
                 console.log(data.path);
             }, 3000)
         }

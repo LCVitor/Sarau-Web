@@ -80,6 +80,21 @@ class User extends Model {
         $this->password = $password;
     }
 
+    public function getGender() : ?string
+    {
+        return $this->gender;
+    }
+
+    public function getPhone() : ?string
+    {
+        return $this->number_phone;
+    }
+
+    public function getBirthDate() : ?string
+    {
+        return $this->birth_date;
+    }
+
     public function getMessage(): ?string
     {
         return $this->message;

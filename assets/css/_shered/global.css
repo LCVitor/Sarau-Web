@@ -51,7 +51,7 @@
 }
 
 .form .area label {
-    color: #515050;
+    color: #515050ac;
     font-size: 17px;
     margin-bottom: 3px;
 }
@@ -72,6 +72,14 @@
 
 .input.type-1:hover, .input.type-1:focus {
     border: 1px solid #000;
+}
+
+select:invalid {
+    color: #999;
+}
+
+select option {
+    color: #000;
 }
 
 /* 
@@ -206,4 +214,42 @@ a:hover, a:focus {
     justify-content: center;
     align-items: center;
     border: 1px solid #7e7e7e71;
+}
+
+/* Estilos para o contêiner das mensagens toast */
+#toast-container {
+    position: fixed;
+    bottom: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+/* Estilos para as mensagens toast */
+.toast {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.success {
+    background-color: #4CAF50;
+}
+
+.error {
+    background-color: #F44336;
+}
+
+.warning {
+    background-color: #FFC107;
+}
+
+.toast.show {
+    opacity: 1;
 }
