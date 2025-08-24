@@ -139,6 +139,27 @@ class User extends Model {
         }
     }
 
+    public function complete_Profile(int $id_user, $gender, $phone, $birth_date)
+    {
+        $conn = Connect::getInstance();
+        $query = "UPDATE users SET gender = :gender, number_phone = :number_phone, birth_date = :birth_date WHERE id = :id";
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(":gender", $gender);
+        $stmt->bindParam(":number_phone", $phone);
+        $stmt->bindParam(":birth_date", $birth_date);
+        $stmt->bindParam(":id", $id_user);
+        
+        try {
+            $stmt->execute();
+            $this->message = "Dados atualizados no perfil!";
+            return $conn->lastInsertId();
+        } catch (PDOException) {
+            $this->message = "Por favor, informe todos os campos!";
+            return false;
+        }
+    }
+
     public function login(string $email, string $password): bool
     {
         $query = "SELECT * FROM {$this->entity} WHERE email = :email";

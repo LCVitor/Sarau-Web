@@ -29,7 +29,7 @@ $this->end();
             <p>Preencha as informações abaixo para garantir sua presença!</p>
             <button id="close-btn" class="button type-2">&times;</button>
             <form id="form" class="form">
-                <div class="area">
+                <!-- <div class="area">
                     <label>Nome *</label>
                     <input type="text" placeholder="Seu nome" name="name" class="input type-1" id="name">
                 </div>
@@ -58,11 +58,11 @@ $this->end();
                 <div class="area">
                     <label>Data de nascimento *</label>
                     <input type="date" name="birht_date" class="input type-1" id="birth_date">
-                </div>
+                </div> -->
 
                 <div class="area">
-                    <label>Duração da apresentação *</label>
-                    <input type="time" name="presentation_time" class="input type-1" id="presentation_time">
+                    <label>Duração da apresentação (Em min) *</label>
+                    <input type="number" name="presentation_time" class="input type-1" id="presentation_time" min="1" step="1" required>
                 </div>
 
                 <div class="area">

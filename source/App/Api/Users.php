@@ -6,6 +6,7 @@ use Exception;
 use CoffeeCode;
 use Source\Core\TokenJWT;
 use Source\Models\User;
+use Source\Models\Enrollment;
 use Source\Support\ImageUploader;
 
 class Users extends Api
@@ -49,6 +50,43 @@ class Users extends Api
                 "name" => $this->userAuth->name,
                 "email" => $this->userAuth->email
             ]
+        ]);
+    }
+
+    public function complete_Profile(array $data)
+    {
+        $this->auth();
+        $user = new User();
+
+        if (!$user->complete_Profile($this->userAuth->id, $data["gender"], $data["number_phone"], $data["birth_date"])) {
+            $this->back([
+                "type" => "error",
+                "message" => $user->getMessage()
+            ]);
+            return;
+        }
+
+        $this->back([
+            "type" => "success",
+            "message" => $user->getMessage()
+        ]);
+    }
+
+    public function enrollment(array $data)
+    {
+        $this->auth();
+        $enrollment = new Enrollment();
+        if (!$enrollment->enrollment($this->userAuth->id, $data["presentation_time"], $data["observation"], $data["sector"])) {
+            $this->back([
+                "type" => "error",
+                "message" => $enrollment->getMessage()
+            ]);
+            return;
+        }
+
+        $this->back([
+            "type" => "success",
+            "message" => $enrollment->getMessage()
         ]);
     }
 
