@@ -20,4 +20,7 @@ fetch("http://localhost/Sarau-Web/api/users/findById", {
     }
 }))
 
-// Fazer a inscrição!!!!
+// Fazer a inscrição!!!! (Front e back)
+// Atuaalizar o DB para aceitar null.
+// Verificador de perfil completo ou não.
+// Mensagem.
