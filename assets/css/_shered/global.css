@@ -201,6 +201,25 @@ a {
     transition: 1s;
 }
 
+a.special {
+    width: 15%;
+    height: 20px;
+    text-align: center;
+    font-size: 14px;
+    padding: 2px;
+    border-radius: 15px;
+    background-color: #3ebd4d;
+    color: #DDD;
+    border: 1px solid #caffd7;
+    align-self: flex-end;
+}
+
+a.special:hover, .special:focus {
+    background-color: #56ff6aa3;
+    color: #000;
+    border: 1px solid #00000096;
+}
+
 a:hover, a:focus {
     background-color: #DDD;
     border-bottom: 1px solid #000;
@@ -216,7 +235,6 @@ a:hover, a:focus {
     border: 1px solid #7e7e7e71;
 }
 
-/* Estilos para o contêiner das mensagens toast */
 #toast-container {
     position: fixed;
     bottom: 45px;
@@ -225,7 +243,6 @@ a:hover, a:focus {
     z-index: 1000;
 }
 
-/* Estilos para as mensagens toast */
 .toast {
     display: flex;
     align-items: center;

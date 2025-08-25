@@ -1,10 +1,25 @@
 export class Toast {
     #message;
     #type;
+    #duration;
 
-    constructor(message, type) {
+    constructor(message, type, duration) {
         this.#message = message;
         this.#type = type;
+        this.#duration = duration;
+    }
+
+    setDuration(duration) {
+        switch (duration) {
+            case "short":
+                return 3000;
+
+            case "long":
+                return 6000;
+
+            default:
+                return 9000;
+        }
     }
 
     show() {
@@ -21,6 +36,7 @@ export class Toast {
         }
         else if(this.#type == "warning") {
             toast.style.backgroundColor = "#FFC107";
+            toast.style.color = "#000";
         }
         else {
             toast.style.backgroundColor = "#fff";
@@ -37,6 +53,6 @@ export class Toast {
             setTimeout(() => {
                 toastContainer.removeChild(toast);
             }, 500);
-        }, 3000);
+        }, this.setDuration(this.#duration));
     }
 }

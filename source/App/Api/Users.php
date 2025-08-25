@@ -159,6 +159,13 @@ class Users extends Api
                 break;
         }
 
+        session_start();
+        $_SESSION['user'] = [
+            'id' => $user->getId(),
+            'name' => $user->getName(),
+            'email' => $user->getEmail(),
+        ];
+
         $user_type = $user->users_join_roles($user->getId());
 
         $token = new TokenJWT();

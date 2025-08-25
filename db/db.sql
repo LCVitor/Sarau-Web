@@ -16,14 +16,20 @@ CREATE TABLE IF NOT EXISTS users (
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    gender ENUM('MALE','FEMALE','OTHER','PREFER_NOT_TO_SAY') NOT NULL,
-    number_phone VARCHAR(20),
-    birth_date DATE NOT NULL,
+    gender ENUM('MALE','FEMALE','OTHER','PREFER_NOT_TO_SAY') NULL,
+    number_phone VARCHAR(20) NULL,
+    birth_date DATE NULL,
     id_role INT NOT NULL,
     FOREIGN KEY (id_role) REFERENCES roles (id)
 );
-INSERT INTO users (name, email, password, gender, number_phone, birth_date, id_role) VALUES ("Participante 1", "participante1@gmail.com", "password1", "FEMALE", "51980553292", "2006-05-16", 2);
-INSERT INTO users (name, email, password, gender, number_phone, birth_date, id_role) VALUES ("Administrador 1", "admin1@gmail.com", "password1", "MALE", "51980553292", "1980-10-10", 1);
+-- ALTER TABLE users
+-- MODIFY COLUMN gender ENUM('MALE','FEMALE','OTHER','PREFER_NOT_TO_SAY') NULL,
+-- MODIFY COLUMN number_phone VARCHAR(20) NULL,
+-- MODIFY COLUMN birth_date DATE NULL;
+
+INSERT INTO users (name, email, password, gender, number_phone, birth_date, id_role) VALUES ("Participante 1", "participante1@gmail.com", "$2b$12$ksdLUa2jXMng7hdnonp5neudprhbBI7/sS9MET5tCAJZEmp.qGxni", "FEMALE", "51980553292", "2006-05-16", 2);
+INSERT INTO users (name, email, password, gender, number_phone, birth_date, id_role) VALUES ("Administrador 1", "admin1@gmail.com", "$2b$12$ksdLUa2jXMng7hdnonp5neudprhbBI7/sS9MET5tCAJZEmp.qGxni", "MALE", "51980553292", "1980-10-10", 1);
+-- Senha dos users de teste: "teste";
 
 DROP TABLE IF EXISTS events;
 CREATE TABLE IF NOT EXISTS events (

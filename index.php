@@ -17,6 +17,8 @@ $route->get("/perfil", "App:profile");
 $route->get("/inscrições", "App:registrations");
 $route->get("/eventos", "App:events");
 
+$route->get("/logout", "App:logout"); // Rota para realizar o logout
+
 $route->group(null);
 
 $route->group("/admin");

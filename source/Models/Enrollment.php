@@ -33,6 +33,11 @@ class Enrollment extends Model {
         $this->entity = "enrollment";
     }
 
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+
     public function enrollment(int $user_id, int $presentation_time, $observation, $sector)
     {
         $conn = Connect::getInstance();

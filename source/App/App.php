@@ -4,12 +4,13 @@ namespace Source\App;
 
 use League\Plates\Engine;
 
-class App
+class App extends AppController
 {
     private $view;
 
     public function __construct()
     {
+        parent::__construct(); // chama a autenticação
         $this->view = new Engine(__DIR__ . "/../../themes/app","php");
     }
 
@@ -31,6 +32,15 @@ class App
     public function events ()
     {
         echo $this->view->render("events", []);
+    }
+
+    public function logout()
+    {
+        session_start();
+        unset($_SESSION['user']);
+        session_destroy();
+        header("Location: http://localhost/Sarau-Web/");
+        exit;
     }
 
 }

@@ -31,45 +31,8 @@ $route->post("/login", "Users:login"); //localhost/Sarau-Web/api/users/login
 $route->get("/findById", "Users:findById");
 $route->post("/enrollment", "Users:enrollment");
 $route->post("/complete_Profile", "Users:complete_Profile");
-// $route->post("/","Users:createUser");
-// $route->get("/me","Users:getUser");
-// $route->post("/login","Users:loginUser");
-// $route->put("/update","Users:updateUser");
-// $route->post("/photo","Users:updatePhoto");
-// $route->get("/photo","Users:getPhoto");
-// $route->post("/set-password","Users:setPassword");
-// $route->get("/token-validate", "Users:tokenValidate");
 
 $route->group("null");
-
-/* FAQS */
-
-$route->group("/faqs");
-
-$route->get("/","Faqs:listFaqs");
-
-$route->group("null");
-
-/* SERVICES */
-
-$route->group("/services");
-
-$route->get("/service/{serviceId}","Services:getById");
-$route->post("/service","Services:insert");
-$route->delete("/service/{serviceId}","Services:delete");
-$route->put("/service/{serviceId}/name/{name}/description/{description}","Services:update");
-$route->get("/list-by-category/category/{categoryId}","Services:listByCategory");
-//$route->get("/list-by-category/category/{categoryId}/bland/{blandId}","Services:listByCategory");
-
-$route->group("null");
-
-$route->group("/services-categories");
-$route->post("/","ServicesCategories:insert");
-$route->get("/","ServicesCategories:getCategory");
-$route->put("/","ServicesCategories:update");
-$route->delete("/","ServicesCategories:remove");
-$route->group("null");
-
 
 $route->dispatch();
 

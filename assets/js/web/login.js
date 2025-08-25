@@ -11,7 +11,7 @@ form.addEventListener("submit", e => {
         body: new FormData(form),
     }).then(res => res.json().then(data => {
         console.log(data);
-        const toast = new Toast(data.message, data.type);
+        const toast = new Toast(data.message, data.type, "short");
         toast.show();
         if (data.type == "success") {
             localStorage.setItem("user", JSON.stringify(data.user));

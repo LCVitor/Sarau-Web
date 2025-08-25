@@ -20,6 +20,7 @@
             <img src="" alt="">
         </div>
         <span></span>
+        <a href="http://localhost/Sarau-Web/app/logout" class="special">Sair</a>
     </div>
     <div class="container-href">
         <a href="<?= url("/app/"); ?>">Home</a>
