@@ -2,7 +2,7 @@
     echo $this->layout("_theme");
 ?>
 <?php
-$this->start("home");
+$this->start("events");
 ?>
 <script type="module" src=<?= url("assets/js/admin/home.js"); ?> async></script>
 <link rel="stylesheet" href=<?= url("assets/css/app/home.css"); ?>>
@@ -10,4 +10,7 @@ $this->start("home");
 $this->end();
 ?>
 
-<h1>Home aqui, bebê!!!</h1>
+<div class="baguhlo"> Eventos </div>
+<div>
+    <h1>Bagulhos</h1>
+</div>

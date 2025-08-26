@@ -3,27 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>.: Área Administrativa :.</title>
+    <title>Área Administrativa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="<?= url("assets/css/admin/styles.css"); ?>">
-    <?php if ($this->section("specific-script")): ?>
-        <?= $this->section("specific-script"); ?>
+    <link rel="stylesheet" href="<?= url("assets/css/_shered/theme.css"); ?>">
+    <link rel="stylesheet" href="<?= url("assets/css/_shered/global.css"); ?>">
+    <script type="module" src="<?= url("assets/js/app/home.js"); ?>" async></script>
+    
+    <?php if ($this->section("home")): ?>
+        <?= $this->section("home"); ?>
+    <?php endif; ?>
+    
+    <?php if ($this->section("events")): ?>
+        <?= $this->section("events"); ?>
     <?php endif; ?>
 </head>
 <body>
-    <header>
-        <h1>Logo da Empresa</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="<?= url("admin"); ?>" <i class="fas fa-home"></i> Home</a></li>
-            <li><a href="<?= url("admin/servicos"); ?>"><i class="fas fa-concierge-bell"></i> Serviços</a></li>
-            <li><a href="<?= url("admin/produtos"); ?>"><i class="fas fa-box"></i> Produtos</a></li>
-            <li><a href="<?= url("admin/logout"); ?>"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
-        </ul>
-    </nav>
-    <main>
-        <?= $this->section('content') ?>
-    </main>
+<nav class="navbar">
+    <div class="user-greeting">
+        <div class="user-photo">
+            <img src="" alt="">
+        </div>
+        <span></span>
+        <a href="http://localhost/Sarau-Web/admin/logout" class="special"> <i class="fas fa-sign-out-alt"></i> Sair</a>
+    </div>
+    <div class="container-href">
+        <a href="<?= url("/admin/"); ?>">Home</a>
+        <a href="<?= url("/admin/eventos"); ?>">Eventos</a>
+        <a href="<?= url("/admin/perfil");?>">Perfil</a>
+    </div>
+    <div class="container-logo">
+        <img src="#" alt="Logo legal aqui!">
+    </div>
+</nav>
+<div id="toast-container"></div>
+<div class="main-content">
+    <?php
+    echo $this->section("content");
+    ?>
+</div>
 </body>
 </html>

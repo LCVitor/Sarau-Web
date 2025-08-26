@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>..:: Página do participante ::..</title>
+    <title>Página do participante</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="<?= url("assets/css/_shered/theme.css"); ?>">
     <link rel="stylesheet" href="<?= url("assets/css/_shered/global.css"); ?>">
     <script type="module" src="<?= url("assets/js/app/home.js"); ?>" async></script>
@@ -20,7 +21,7 @@
             <img src="" alt="">
         </div>
         <span></span>
-        <a href="http://localhost/Sarau-Web/app/logout" class="special">Sair</a>
+        <a href="http://localhost/Sarau-Web/app/logout" class="special"><i class="fas fa-sign-out-alt"></i> Sair</a>
     </div>
     <div class="container-href">
         <a href="<?= url("/app/"); ?>">Home</a>

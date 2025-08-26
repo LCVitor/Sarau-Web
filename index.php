@@ -24,8 +24,10 @@ $route->group(null);
 $route->group("/admin");
 
 $route->get("/", "Admin:home");
-$route->get("/servicos", "Admin:services");
-$route->get("/produtos", "Admin:products");
+$route->get("/eventos", "Admin:events");
+$route->get("/perfil", "Admin:profile");
+
+$route->get("/logout", "Admin:logout"); //Rota para realizar o logout
 
 $route->group(null);
 

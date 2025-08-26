@@ -151,7 +151,7 @@ class Users extends Api
                 break;
             
             case "ADMIN":
-                $path = "http://localhost/Sarau-Web/adm/";
+                $path = "http://localhost/Sarau-Web/admin/";
                 break;
 
             default:
@@ -159,15 +159,16 @@ class Users extends Api
                 break;
         }
 
+        
+        $user_type = $user->users_join_roles($user->getId());
         session_start();
         $_SESSION['user'] = [
             'id' => $user->getId(),
             'name' => $user->getName(),
             'email' => $user->getEmail(),
+            'role' => $user_type
         ];
-
-        $user_type = $user->users_join_roles($user->getId());
-
+        
         $token = new TokenJWT();
         $this->back([
             "type" => "success",
