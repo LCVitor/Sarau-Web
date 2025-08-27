@@ -67,4 +67,17 @@ class Enrollment extends Model {
             return false;
         }
     }
+
+    public function selectAll(): ?array
+    {
+        $conn = Connect::getInstance();
+
+        $query = "SELECT enrollment.id as enrollment_id, enrollment.observation as enrollment_obs, enrollment.presentation_time as enrollment_pt, events.name as event_name, events.date as event_date, users.id as user_id, users.name as user_name, sector_artistic.name as sector_name   
+            FROM enrollment 
+            INNER JOIN events ON enrollment.id_event = events.id 
+            INNER JOIN users ON enrollment.id_user = users.id 
+            INNER JOIN sector_artistic ON enrollment.id_sector_artistic = sector_artistic.id 
+            WHERE events.id > 1";
+        return $conn->query($query)->fetchAll();
+    }
 }

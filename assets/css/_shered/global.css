@@ -144,6 +144,39 @@ COMPONENTES
     border: 1px solid #00000096;
 }
 
+.button.table {
+    border-radius: 8px;
+    padding: 5px;
+    transition: 1s;
+}
+
+.button.eye {
+    border: 1px solid #768118;
+    background-color: #fbfd5c65;
+    color: #768118;
+}.button.eye:hover, .button.eye:focus {
+    border: 1px solid #000;
+    color: #000;
+}
+
+.button.approved {
+    border: 1px solid #113b65;
+    background-color: #718bff65;
+    color: #113b65;
+}.button.approved:hover, .button.approved:focus {
+    border: 1px solid #000;
+    color: #000;
+}
+
+.button.denied {
+    border: 1px solid #9f1010;
+    background-color: #ff282865;
+    color: #9f1010;
+}.button.denied:hover, .button.denied:focus {
+    border: 1px solid #000;
+    color: #000;
+}
+
 .navbar {
     background-color: #FFF;
     position: fixed;
@@ -269,4 +302,57 @@ a:hover, a:focus {
 
 .toast.show {
     opacity: 1;
+}
+
+/* Table design */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 8px;
+    text-align: justify;
+}
+
+thead {
+    background-color: #DDD;
+    height: 55px;
+}
+
+tbody {
+    background-color: #dddddd2d;
+}
+
+.pagination {
+    background-color: #dddddd2d;
+    width: 100%;
+    height: 35px;
+    display: flex;
+    justify-content: start;
+    border-radius: 0 0 10px 10px;
+    padding: 2px;
+}
+
+.pagination button {
+    border: 1px solid #4d4d4da7;
+    background: #ffffffae;
+    padding: 5px;
+    margin: 1px;
+    height: 23px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.pagination button.active {
+    background-color: #e5e3e3;
+}
+
+.pagination button:hover, .pagination button:focus {
+    background-color: #e5e3e3;
 }

@@ -1,0 +1,29 @@
+.title-area {
+    width: 100%;
+    /* height: 50px; */
+    /* background-color: red; */
+}
+
+.actions {
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+}
+
+.actions .event, .enrollment {
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    border-top: 1px solid #7e7e7e;
+}
+
+.actions .event div {
+    width: 100%;
+}
+
+.actions .enrollment {
+    flex-flow: column wrap;
+}

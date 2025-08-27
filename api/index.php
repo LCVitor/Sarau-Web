@@ -22,16 +22,18 @@ $route = new Router(url(),":");
 
 $route->namespace("Source\App\Api");
 
-/* USERS */
-
+/* USERS */ 
 $route->group("/users");
-
 $route->get("/", "Users:listUsers");
 $route->post("/login", "Users:login"); //localhost/Sarau-Web/api/users/login
 $route->get("/findById", "Users:findById");
 $route->post("/enrollment", "Users:enrollment");
 $route->post("/complete_Profile", "Users:complete_Profile");
+$route->group("null");
 
+/* ENROLLMENT */
+$route->group("/enrollments");
+$route->get("/selectAll", "Enrollments:getEnrollments");
 $route->group("null");
 
 $route->dispatch();

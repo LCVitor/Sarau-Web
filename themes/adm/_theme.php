@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="<?= url("assets/css/_shered/theme.css"); ?>">
     <link rel="stylesheet" href="<?= url("assets/css/_shered/global.css"); ?>">
-    <script type="module" src="<?= url("assets/js/app/home.js"); ?>" async></script>
+    <script type="module" src="<?= url("assets/js/admin/home.js"); ?>" async></script>
     
     <?php if ($this->section("home")): ?>
         <?= $this->section("home"); ?>
