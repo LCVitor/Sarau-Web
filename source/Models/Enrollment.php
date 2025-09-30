@@ -68,6 +68,46 @@ class Enrollment extends Model {
         }
     }
 
+    public function addApproved(): bool 
+    {
+        $conn = Connect::getInstance();
+        $query = "INSERT INTO approveds (date_approved, id_enrollment) VALUES (:date_approved, :id_enrollment)";
+        $stmt = $conn->prepare($query);
+        $date = date("Y-m-d H:i:s");
+        $stmt->bindParam(":date_approved", $date);
+        $stmt->bindParam(":id_enrollment", $this->id);
+        
+        try {
+            $stmt->execute();
+            $this->message = "Deferimento realizado com sucesso!";
+            return true;
+        } catch (PDOException) {
+            $this->message = "Erro! Algo ocorreu.";
+            return false;
+        }
+    }
+    
+    public function addDismissed(): bool 
+    {
+        $conn = Connect::getInstance();
+        $query = "INSERT INTO dismisseds (date_dismissed, description, id_enrollment) VALUES (:date_approved, :description, :id_enrollment)";
+        $stmt = $conn->prepare($query);
+        $date = date("Y-m-d H:i:s");
+        $description = "NULL";
+        $stmt->bindParam(":date_approved", $date);
+        $stmt->bindParam(":description", $description);
+        $stmt->bindParam(":id_enrollment", $this->id);
+        
+        try {
+            $stmt->execute();
+            $this->message = "Indeferimento realizado com sucesso!";
+            return true;
+        } catch (PDOException) {
+            $this->message = "Erro! Algo ocorreu.";
+            return false;
+        }
+    }
+
     public function selectAll(): ?array
     {
         $conn = Connect::getInstance();

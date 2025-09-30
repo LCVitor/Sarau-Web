@@ -22,4 +22,39 @@ class Enrollments extends Api
         $this->back($enrollment->selectAll());
     }
 
+    public function selectById(array $data) : void
+    {
+        $this->auth();
+        $enrollment = new Enrollment();
+        $this->back($enrollment->selectById($data["id"]));
+        // RETURN:      
+            // "id": depende,
+            // "observation": "Algo aqui",
+            // "presentation_time": "00:00:00",
+            // "id_event": number,
+            // "id_user": number,
+            // "id_sector_artistic": number
+
+    }
+    
+    public function addApproved(array $data) : void
+    {
+        $this->auth();
+        $enrollment = new Enrollment($data["id"]);
+        $this->back($enrollment->addApproved());
+        // RETURN:      
+            // message padrão!
+
+    }
+
+    public function addDismissed(array $data) : void
+    {
+        $this->auth();
+        $enrollment = new Enrollment($data["id"]);
+        $this->back($enrollment->addDismissed());
+        // RETURN:      
+            // message padrão!
+
+    }
+
 }

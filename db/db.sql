@@ -78,3 +78,12 @@ CREATE TABLE IF NOT EXISTS approveds(
     id_enrollment INT NOT NULL,
     FOREIGN KEY (id_enrollment) REFERENCES enrollment (id)
 );
+
+DROP TABLE IF EXISTS dismisseds;
+CREATE TABLE IF NOT EXISTS dismisseds(
+	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    date_dismissed DATE NOT NULL,
+    description VARCHAR(100),
+    id_enrollment INT NOT NULL,
+    FOREIGN KEY (id_enrollment) REFERENCES enrollment (id)
+);

@@ -33,6 +33,8 @@ getEnrollments().then(data => {
 
     tbody.innerHTML = string;
     lucide.replace();
+
+    
 })
 
 function getEnrollments() {
