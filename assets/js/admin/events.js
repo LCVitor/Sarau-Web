@@ -15,15 +15,15 @@ getEnrollments().then(data => {
                 <td>${en.sector_name}</td>
                 <td>${en.user_name}</td>
                 <td>
-                    <button class="button table eye" title="Visualizar">
+                    <button value="${en.enrollment_id}" class="button table eye" title="Visualizar">
                         <i class="fas fa-eye" id="eye"></i>
                     </button>
 
-                    <button class="button table approved" title="Deferir">
+                    <button value="${en.enrollment_id}" class="button table approved" title="Deferir">
                         <i class="fas fa-check-circle"></i>
                     </button>
 
-                    <button class="button table denied" title="Indeferir">
+                    <button value="${en.enrollment_id}" class="button table denied" title="Indeferir">
                         <i class="fas fa-times-circle"></i>
                     </button>
                 </td>
@@ -32,9 +32,19 @@ getEnrollments().then(data => {
     });
 
     tbody.innerHTML = string;
-    lucide.replace();
+    // lucide.replace();
 
-    
+    document.querySelectorAll(".eye").forEach(btn => {
+        btn.addEventListener("click", () => {
+            console.log("CHEGUEI AQUI DENTRO!");
+            fetch(`http://localhost/Sarau-Web/api/enrollments/selectById/${btn.value}`, {
+                headers: { token: userAuth.token },
+                method: "GET"
+            }).then(res => res.json().then(data => {
+                console.log(data);
+            }))
+        })
+    })
 })
 
 function getEnrollments() {
