@@ -1,0 +1,8 @@
+Principais:
+Roxo => #815be3
+Rosa => #ce87e7
+
+Detalhes:
+Azul => #6595d5
+Vermelho => #d2717c
+Amarelo => #f8d938

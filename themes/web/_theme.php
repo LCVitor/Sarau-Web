@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sarau Web</title>
-    <link rel="stylesheet" href="<?= url("assets/css/_shered/theme.css"); ?>">
-    <link rel="stylesheet" href="<?= url("assets/css/_shered/global.css"); ?>">
+    <link rel="stylesheet" href="<?= url("assets/css/_shared/main.css"); ?>">
+    <link rel="stylesheet" href="<?= url("assets/css/_shared/global.css"); ?>">
     <script type="module" src="<?= url("assets/js/web/login.js"); ?>" async></script>
 </head>
 <body> 
@@ -14,14 +14,16 @@
 
         <div id="primary">
             <div id="container-logo">
-                <img src="#" alt="Logo bem legal aqui!">
+                <img src="<?= url("assets/img/saraulogo.png")?>" alt="Logo bem legal aqui!">
             </div>
             <div id="functions">
                 <button id="login-btn" class="button type-1">ENTRAR</button>
             </div>
         </div>
         <div id="second">
-            <h1>Título legal bem aqui!</h1>
+            <img src="<?= url("assets/img/saraulogo.png")?>">
+            <p>Instituto Federal Sul-rio-grandense Campus Charqueadas</p>
+            <h3>17 - 19 Outubro 2025</h3>
         </div>
     </div>
     
