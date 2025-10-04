@@ -2,7 +2,7 @@ import { Toast } from "../_shared/classes/Toast.js";
 import { showModal } from "../_shared/functions/functions.js";
 showModal("container-modal", "login-btn");
 
-const form = document.querySelector("#form");
+const form = document.querySelector("#form-login");
 form.addEventListener("submit", e => {
     e.preventDefault();
 

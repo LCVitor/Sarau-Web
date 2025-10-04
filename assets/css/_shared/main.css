@@ -4,10 +4,6 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: #6145ffff;
-}
-
 #section {
     position: relative;
     height: 700px;
@@ -60,9 +56,9 @@ body {
 }
 
 .main-content {
-    /* background-color: red;
-    height: 100%; */ 
-    /* width: 80%;  */
+    /* background-color: red; */
+    height: 100%; 
+    width: 80%; 
     position: fixed;
     right: 0;
     top: 0;

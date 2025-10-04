@@ -36,13 +36,33 @@ getEnrollments().then(data => {
 
     document.querySelectorAll(".eye").forEach(btn => {
         btn.addEventListener("click", () => {
-            console.log("CHEGUEI AQUI DENTRO!");
             fetch(`http://localhost/Sarau-Web/api/enrollments/selectById/${btn.value}`, {
                 headers: { token: userAuth.token },
                 method: "GET"
             }).then(res => res.json().then(data => {
                 console.log(data);
+                //abre a modal, tem de fazer o css dessa parte
             }))
+        })
+    })
+
+    document.querySelectorAll(".approved").forEach(btn => {
+        btn.addEventListener("click", () => {
+            fetch(`http://localhost/Sarau-Web/api/enrollments/addApproved/${btn.value}`, {
+                headers: { token: userAuth.token },
+                method: "GET"
+            }).then(res => res.json().then(data => {
+                console.log(data);
+                //Apenas mostra um toast
+            }))
+        })
+    })
+
+    document.querySelectorAll(".denied").forEach(btn => {
+        btn.addEventListener("click", () => {
+            //abre a modal com input para digitar coisas e depois efetua o fetch, pode ser um form,
+            //pois aí mandamos um post pro back. Mais fácil de trabalhar
+            // fetch(`http://localhost/Sarau-Web/api/enrollments/addDismissed/${btn.value}`)
         })
     })
 })

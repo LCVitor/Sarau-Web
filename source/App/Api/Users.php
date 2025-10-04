@@ -90,14 +90,7 @@ class Users extends Api
         ]);
     }
 
-    public function listUsers ()
-    {
-        // $this->auth();
-        $users = new User();
-        $this->back($users->selectAll());
-    }
-
-    public function createUser (array $data)
+    public function registration(array $data)
     {
         if(in_array("", $data)) {
             $this->back([
@@ -107,16 +100,28 @@ class Users extends Api
             return;
         }
 
+        if($data["passwordConfirm"] != $data["password"]) {
+            $this->back([
+                "type" => "error",
+                "message" => "Senhas não conferem!"
+            ]);
+            return;
+        }
+        $id_role = 2;
         $user = new User(
-            null,
+            null, 
             $data["name"],
-            $data["email"],
-            $data["password"]
+            $data["email"], 
+            $data["password"], 
+            null, 
+            null, 
+            null,
+            $id_role 
         );
 
-        $insertUser = $user->insert();
-
-        if(!$insertUser){
+        $insert = $user->insert();
+        
+        if(!$insert){
             $this->back([
                 "type" => "error",
                 "message" => $user->getMessage()
@@ -128,7 +133,13 @@ class Users extends Api
             "type" => "success",
             "message" => "Usuário cadastrodo com sucesso!"
         ]);
+    }
 
+    public function listUsers ()
+    {
+        // $this->auth();
+        $users = new User();
+        $this->back($users->selectAll());
     }
 
     public function login(array $data) 

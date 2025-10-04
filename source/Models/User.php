@@ -122,13 +122,14 @@ class User extends Model {
 
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
 
-        $query = "INSERT INTO users (name, email, password) 
-                  VALUES (:name, :email, :password)";
+        $query = "INSERT INTO users (name, email, password, id_role) 
+                  VALUES (:name, :email, :password, :id_role)";
 
         $stmt = $conn->prepare($query);
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":email", $this->email);
         $stmt->bindParam(":password", $this->password);
+        $stmt->bindParam(":id_role", $this->id_role);
 
         try {
             $stmt->execute();

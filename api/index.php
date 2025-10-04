@@ -26,6 +26,7 @@ $route->namespace("Source\App\Api");
 $route->group("/users");
 $route->get("/", "Users:listUsers");
 $route->post("/login", "Users:login"); //localhost/Sarau-Web/api/users/login
+$route->post("/registration", "Users:registration");
 $route->get("/findById", "Users:findById");
 $route->post("/enrollment", "Users:enrollment");
 $route->post("/complete_Profile", "Users:complete_Profile");
