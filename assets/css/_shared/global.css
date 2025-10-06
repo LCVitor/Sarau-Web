@@ -1,6 +1,9 @@
 *{
     font-family: "Monaco", monospace;
 }
+body {
+    background-color: rgb(255, 225, 180);
+}
 
 #container-modal, #container-modal-type-1 {
     width: 100%;
@@ -205,7 +208,7 @@ COMPONENTES
     width: 80px;
     height: 80px;
     border-radius: 100%;
-    border: 1px solid #d8d0ff71;
+    border: 1px solid #2b00ffcc;
     background-color: #ebd3ff;
     display: flex;
     justify-content: center;
@@ -216,6 +219,14 @@ COMPONENTES
 .user-photo:focus, .user-photo:hover {
     background-color: #ffffff;
     border: 1px solid #3700ff;
+}
+
+.container-logo{
+    height: 50px;
+}
+
+.container-logo img{
+    height: 100%;
 }
 
 .container-href {

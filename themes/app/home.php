@@ -11,7 +11,7 @@ $this->end();
 ?>
 
 <div class="section primary">
-    <div class="info primary">Próximo Sarau Cultural: xx/xx/xxxx</div>
+    <div class="info primary">Próximo Sarau Cultural: 17/10/2025</div>
     <button id="enrollment-btn" class="button type-3 special">INSCREVER-SE</button>
 </div>
 
@@ -21,7 +21,9 @@ $this->end();
     <div class="info special">Coisa aqui!</div>
 </div>
 
-<div class="notification">Notificações aqui!</div>
+<div class="section third">
+    <span class="notification">Notificação Importante <b id="notif-close">X</b></span>
+</div>
 
 <div id="container-modal">
         <div class="modal">

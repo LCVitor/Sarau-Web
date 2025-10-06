@@ -30,7 +30,7 @@
         <a href="<?= url("/app/perfil"); ?>">Perfil</a>
     </div>
     <div class="container-logo">
-        <img src="#" alt="Logo legal aqui!">
+        <img src="<?= url("assets/img/saraulogo.png")?>" alt="Logo legal aqui!">
     </div>
 </nav>
 <div id="toast-container"></div>
