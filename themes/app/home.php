@@ -5,6 +5,7 @@
 $this->start("home");
 ?>
 <script type="module" src=<?= url("assets/js/app/home.js"); ?> async></script>
+<link rel="stylesheet" href=<?= url("assets/css/app/global.css"); ?>>
 <link rel="stylesheet" href=<?= url("assets/css/app/home.css"); ?>>
 <?php
 $this->end();

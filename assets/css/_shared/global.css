@@ -134,6 +134,7 @@ COMPONENTES
     border-radius: 5px;
     width: 80px;
     height: 30px;
+    width: auto;
     transition: 1s;
     align-self: self-end;
     margin-top: 7px;
@@ -383,4 +384,16 @@ footer {
 
 #ifinfo {
     font-size: 20px;
+}
+
+form{
+    background-color: rgb(240, 237, 255);
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 50px;
+}
+
+form button{
+    margin-top: 10px;
+    padding: 5px;
 }
