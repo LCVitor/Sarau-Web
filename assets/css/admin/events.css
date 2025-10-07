@@ -66,3 +66,13 @@ body {
     display: flex;
     justify-content: center;
 }
+
+#event-info{
+    margin-bottom: 20px;
+    border-top: 1px solid #515050;
+}
+
+#event-state{
+    color: #f00;
+    font-size: 15px;
+}
