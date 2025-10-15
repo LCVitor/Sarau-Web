@@ -1,3 +1,5 @@
+import { Toast } from "../_shared/classes/Toast.js";
+import { showModal } from "../_shared/functions/functions.js";
 import { userAuth } from "../_shared/functions/functions.js";
 
 getEnrollments().then(data => {
@@ -35,13 +37,29 @@ getEnrollments().then(data => {
     // lucide.replace();
 
     document.querySelectorAll(".eye").forEach(btn => {
+        let string = "";
         btn.addEventListener("click", () => {
             fetch(`http://localhost/Sarau-Web/api/enrollments/selectById/${btn.value}`, {
                 headers: { token: userAuth.token },
                 method: "GET"
             }).then(res => res.json().then(data => {
                 console.log(data);
-                //abre a modal, tem de fazer o css dessa parte
+                string = `
+                    <p>ID de Inscrição: <b>${data.id}</b></p>
+                    <p>Apresentador: <b>${data.id_user}</b></p>
+                    <p>Setor artístico: <b>${data.id_sector_artistic}</b></p>
+                    <p>Duração: <b>${data.presentation_time}</b></p>
+                    <p>Observação: <b>${data.observation}</b></p>
+                    <p>Status: <b id="event-state">Não avaliado</b></p>
+                `;
+                let modal = document.querySelector("#container-modal-type-1");
+                modal.style.display = "flex";
+
+                modal.querySelector("#event-info").innerHTML = string;
+
+                modal.querySelector("#close-btn").addEventListener("click", () => {
+                    modal.style.display = "none";
+                });
             }))
         })
     })
@@ -60,9 +78,27 @@ getEnrollments().then(data => {
 
     document.querySelectorAll(".denied").forEach(btn => {
         btn.addEventListener("click", () => {
-            //abre a modal com input para digitar coisas e depois efetua o fetch, pode ser um form,
-            //pois aí mandamos um post pro back. Mais fácil de trabalhar
-            // fetch(`http://localhost/Sarau-Web/api/enrollments/addDismissed/${btn.value}`)
+            let modal = document.querySelector("#container-modal");
+            modal.style.display = "flex";
+
+            modal.querySelector("#close-btn").addEventListener("click", () => {
+                modal.style.display = "none";
+            });
+
+            let form_d = document.querySelector("#form-d");
+            form_d.innerHTML += `<input type="hidden" name="id" value="${btn.value}">`;
+            form_d.addEventListener("submit", e => {
+                e.preventDefault();
+
+                fetch(`http://localhost/Sarau-Web/api/enrollments/addDismissed`, {
+                    headers: { token: userAuth.token },
+                    method: "POST",
+                    body: new FormData(form_d),
+                }).then(res => res.json().then(data => {
+                    new Toast(data.message, "success", "short").show();
+                    console.log(data)
+                }))
+            }) 
         })
     })
 })

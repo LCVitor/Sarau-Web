@@ -87,13 +87,12 @@ class Enrollment extends Model {
         }
     }
     
-    public function addDismissed(): bool 
+    public function addDismissed($description): bool 
     {
         $conn = Connect::getInstance();
         $query = "INSERT INTO dismisseds (date_dismissed, description, id_enrollment) VALUES (:date_approved, :description, :id_enrollment)";
         $stmt = $conn->prepare($query);
         $date = date("Y-m-d H:i:s");
-        $description = "NULL";
         $stmt->bindParam(":date_approved", $date);
         $stmt->bindParam(":description", $description);
         $stmt->bindParam(":id_enrollment", $this->id);

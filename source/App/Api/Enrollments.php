@@ -51,10 +51,10 @@ class Enrollments extends Api
     {
         $this->auth();
         $enrollment = new Enrollment($data["id"]);
-        $this->back($enrollment->addDismissed());
-        // RETURN:      
-            // message padrão!
-
+        $this->back([
+            "success" => $enrollment->addDismissed($data["text"]),
+            "message" => $enrollment->getMessage()
+        ]);
     }
 
 }

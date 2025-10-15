@@ -51,29 +51,23 @@ $this->end();
 
     <div id="container-modal-type-1" id="info-area">
         <div class="modal">
-            <h1>Informações do evento</h1>
+            <h1>Informações</h1>
             <button id="close-btn" class="button type-2">&times;</button>
             <div id="event-info">
-                <p>ID do evento: <b>12345</b></p>
-                <p>Apresentador: <b>Exemplo</b></p>
-                <p>Setor artístico: <b>Exemplo</b></p>
-                <p>Duração: <b>00:00</b></p>
-                <p>Observação: <b>Exemplo</b></p>
-                <p>Status: <b id="event-state">Não avaliado</b></p>
             </div>
         </div>
     </div>
 
-    <!-- <div id="container-modal-type-1" id="defer-area">
+    <div id="container-modal" id="defer-area">
         <div class="modal">
             <h1>Indeferir evento</h1>
             <button id="close-btn" class="button type-2">&times;</button>
-            <form id="form-registration" class="form">
+            <form id="form-d" class="form">
                 <p>AVISO: Eventos indeferidos só poderam ser acessados denovo caso o apresentador o reenvie. Indeferir um evento é permanente.</p>
                 <label>Motivo: </label>
-                <textarea></textarea>
-                <input type="submit" class="button type-3" value="Deferir">
+                <textarea name="text"></textarea>
+                <input type="submit" class="button type-3" value="Indeferir">
             </form>
         </div>
-    </div> -->
+    </div>
 </body>

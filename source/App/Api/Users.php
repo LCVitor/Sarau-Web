@@ -58,7 +58,7 @@ class Users extends Api
         $this->auth();
         $user = new User();
 
-        if (!$user->complete_Profile($this->userAuth->id, $data["gender"], $data["number_phone"], $data["birth_date"])) {
+        if (!$user->complete_Profile($this->userAuth->id, $data["gender"], $data["phone"], $data["date"])) {
             $this->back([
                 "type" => "error",
                 "message" => $user->getMessage()

@@ -154,7 +154,7 @@ class User extends Model {
         try {
             $stmt->execute();
             $this->message = "Dados atualizados no perfil!";
-            return $conn->lastInsertId();
+            return true;
         } catch (PDOException) {
             $this->message = "Por favor, informe todos os campos!";
             return false;
