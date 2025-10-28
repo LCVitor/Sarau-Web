@@ -16,6 +16,10 @@
     <?php if ($this->section("events")): ?>
         <?= $this->section("events"); ?>
     <?php endif; ?>
+    
+    <?php if ($this->section("profile")): ?>
+        <?= $this->section("profile"); ?>
+    <?php endif; ?>
 </head>
 <body>
 <nav class="navbar">

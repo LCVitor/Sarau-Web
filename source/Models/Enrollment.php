@@ -111,12 +111,72 @@ class Enrollment extends Model {
     {
         $conn = Connect::getInstance();
 
-        $query = "SELECT enrollment.id as enrollment_id, enrollment.observation as enrollment_obs, enrollment.presentation_time as enrollment_pt, events.name as event_name, events.date as event_date, users.id as user_id, users.name as user_name, sector_artistic.name as sector_name   
-            FROM enrollment 
-            INNER JOIN events ON enrollment.id_event = events.id 
-            INNER JOIN users ON enrollment.id_user = users.id 
-            INNER JOIN sector_artistic ON enrollment.id_sector_artistic = sector_artistic.id 
-            WHERE events.id > 1";
+        $query = "
+            SELECT 
+                enrollment.id AS enrollment_id, 
+                enrollment.observation AS enrollment_obs, 
+                enrollment.presentation_time AS enrollment_pt, 
+                events.name AS event_name, 
+                events.date AS event_date, 
+                users.id AS user_id, 
+                users.name AS user_name, 
+                sector_artistic.name AS sector_name
+            FROM enrollment
+            INNER JOIN events ON enrollment.id_event = events.id
+            INNER JOIN users ON enrollment.id_user = users.id
+            INNER JOIN sector_artistic ON enrollment.id_sector_artistic = sector_artistic.id
+            LEFT JOIN approveds ON enrollment.id = approveds.id_enrollment
+            LEFT JOIN dismisseds ON enrollment.id = dismisseds.id_enrollment
+            WHERE events.id > 1
+            AND approveds.id IS NULL
+            AND dismisseds.id IS NULL
+        ";
+
         return $conn->query($query)->fetchAll();
     }
+
+    public function selectById(int $id): ?object
+    {
+        $conn = Connect::getInstance();
+
+        $query = "
+            SELECT 
+                -- Dados da inscrição
+                enrollment.id AS enrollment_id,
+                enrollment.observation AS enrollment_observation,
+                enrollment.presentation_time AS enrollment_time,
+
+                -- Dados do usuário
+                users.id AS user_id,
+                users.name AS user_name,
+                users.email AS user_email,
+                users.number_phone AS user_phone,
+                users.gender AS user_gender,
+                YEAR(users.birth_date) AS user_birth_year,
+
+                -- Dados do evento
+                events.id AS event_id,
+                events.name AS event_name,
+                events.date AS event_date,
+
+                -- Dados do setor artístico
+                sector_artistic.id AS sector_id,
+                sector_artistic.name AS sector_name
+
+            FROM enrollment
+            INNER JOIN users ON enrollment.id_user = users.id
+            INNER JOIN events ON enrollment.id_event = events.id
+            INNER JOIN sector_artistic ON enrollment.id_sector_artistic = sector_artistic.id
+            WHERE enrollment.id = :id
+            LIMIT 1
+        ";
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+
+        $result = $stmt->fetch(); 
+
+        return $result;
+}
 }

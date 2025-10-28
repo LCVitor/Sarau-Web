@@ -54,16 +54,38 @@ $this->end();
             <h1>Informações</h1>
             <button id="close-btn" class="button type-2">&times;</button>
             <div id="event-info">
+                <section class="user-info">
+                    <h2>Participante</h2>
+                    <div class="columns">
+                        <div class="column" id="user-name"></div>
+                        <div class="column" id="user-email"></div>
+                        <div class="column" id="user-gender"></div>
+                        <div class="column" id="user-birth"></div>
+                        <div class="column" id="user-phone"></div>
+                    </div>
+                </section>
+
+                <section class="enrollment-info">
+                    <h2>Inscrição</h2>
+                    <div class="columns">
+                        <div class="column" id="event-name"></div>
+                        <div class="column" id="event-date"></div>
+                        <div class="column" id="sector-name"></div>
+                        <div class="column" id="presentation-time"></div>
+                        <div class="column" id="observation"></div>
+                        <div class="column" id="status"></div>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
 
     <div id="container-modal" id="defer-area">
         <div class="modal">
-            <h1>Indeferir evento</h1>
+            <h1>Indeferir inscrição</h1>
             <button id="close-btn" class="button type-2">&times;</button>
             <form id="form-d" class="form">
-                <p>AVISO: Eventos indeferidos só poderam ser acessados denovo caso o apresentador o reenvie. Indeferir um evento é permanente.</p>
+                <p>AVISO: Incrições indeferidas só poderam ser acessados denovo caso o apresentador o reenvie. Indeferir uma inscrição é permanente.</p>
                 <label>Motivo: </label>
                 <textarea name="text"></textarea>
                 <input type="submit" class="button type-3" value="Indeferir">

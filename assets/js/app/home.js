@@ -3,7 +3,8 @@ import { userAuth } from "../_shared/functions/functions.js";
 import { User } from "../_shared/classes/User.js";
 import { Toast } from "../_shared/classes/Toast.js";
 
-document.querySelector("#enrollment-btn").setAttribute("disabled", "disabled");
+// document.querySelector("#enrollment-btn").setAttribute("disabled", "disabled");
+let controler = "true";
 let user = {};
 fetch("http://localhost/Sarau-Web/api/users/findById", {
     headers: { token: userAuth.token }, 
@@ -13,9 +14,12 @@ fetch("http://localhost/Sarau-Web/api/users/findById", {
     if (data.user.gender == null || data.user.gender == undefined || data.user.gender == "") {
         console.log("Perfil incompleto!");
         new Toast("Por favor, complete o perfil!", "warning", "long").show();
+        document.querySelector("#enrollment-btn").addEventListener("click", () => {
+            new Toast("Por favor, complete o perfil!", "warning", "long").show();
+        })
     }
     else {
-        document.querySelector("#enrollment-btn").removeAttribute("disabled");
+        // document.querySelector("#enrollment-btn").removeAttribute("disabled");
         showModal("container-modal", "enrollment-btn");
         console.log("Perfil completo!");
     }

@@ -1,0 +1,97 @@
+.home-dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    padding: 20px;
+    flex: 1 1 300px;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.card h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #815be3;
+    border-bottom: 2px solid #ce87e7;
+    padding-bottom: 5px;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.event, .enrollment {
+    background: #f8f0ff;
+    border-left: 4px solid #815be3;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.3s, border-left 0.3s;
+}
+
+.event:hover, .enrollment:hover {
+    background: #ece0ff;
+    border-left: 4px solid #ce87e7;
+}
+
+.event-name, .enroll-name {
+    font-weight: bold;
+    color: #815be3;
+    font-size: 16px;
+}
+
+.event-date, .enroll-event {
+    font-size: 14px;
+    color: #6595d5;
+}
+
+.user-info {
+    font-size: 15px;
+    color: #333;
+    background: #fdf2f7;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.btn-card {
+    margin-top: 15px;
+    background-color: #ce87e7;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-card:hover {
+    background-color: #815be3;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 1000px) {
+    .home-dashboard {
+        justify-content: center;
+    }
+    .card {
+        max-width: 90%;
+    }
+}

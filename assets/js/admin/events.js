@@ -2,13 +2,19 @@ import { Toast } from "../_shared/classes/Toast.js";
 import { showModal } from "../_shared/functions/functions.js";
 import { userAuth } from "../_shared/functions/functions.js";
 
-getEnrollments().then(data => {
-    console.log(data);
-    let tbody = document.querySelector("tbody");
+let enrollments = [];
+let currentPage = 1;
+const perPage = 5;
+
+function renderEnrollments() {
+    const tbody = document.querySelector("tbody");
     tbody.innerHTML = "";
+    const start = (currentPage - 1) * perPage;
+    const end = start + perPage;
+    const pageItems = enrollments.slice(start, end);
     let string = "";
 
-    data.forEach(en => {
+    pageItems.forEach(en => {
         string += `
             <tr>
                 <td>${en.enrollment_id}</td>
@@ -34,35 +40,36 @@ getEnrollments().then(data => {
     });
 
     tbody.innerHTML = string;
-    // lucide.replace();
+    setupButtons();
+    updatePagination();
+}
 
+function setupButtons() {
     document.querySelectorAll(".eye").forEach(btn => {
-        let string = "";
         btn.addEventListener("click", () => {
             fetch(`http://localhost/Sarau-Web/api/enrollments/selectById/${btn.value}`, {
                 headers: { token: userAuth.token },
                 method: "GET"
             }).then(res => res.json().then(data => {
-                console.log(data);
-                string = `
-                    <p>ID de Inscrição: <b>${data.id}</b></p>
-                    <p>Apresentador: <b>${data.id_user}</b></p>
-                    <p>Setor artístico: <b>${data.id_sector_artistic}</b></p>
-                    <p>Duração: <b>${data.presentation_time}</b></p>
-                    <p>Observação: <b>${data.observation}</b></p>
-                    <p>Status: <b id="event-state">Não avaliado</b></p>
-                `;
-                let modal = document.querySelector("#container-modal-type-1");
-                modal.style.display = "flex";
+                document.querySelector("#user-name").innerHTML = `Nome: <b>${data.user_name}</b>`;
+                document.querySelector("#user-email").innerHTML = `Email: <b>${data.user_email}</b>`;
+                document.querySelector("#user-gender").innerHTML = `Gênero: <b>${data.user_gender}</b>`;
+                document.querySelector("#user-birth").innerHTML = `Ano de Nascimento: <b>${data.user_birth_year}</b>`;
+                document.querySelector("#user-phone").innerHTML = `Telefone: <b>${data.user_phone}</b>`;
+                document.querySelector("#event-name").innerHTML = `Evento: <b>${data.event_name}</b>`;
+                document.querySelector("#event-date").innerHTML = `Data: <b>${data.event_date}</b>`;
+                document.querySelector("#sector-name").innerHTML = `Setor: <b>${data.sector_name}</b>`;
+                document.querySelector("#presentation-time").innerHTML = `Duração: <b>${data.enrollment_time}</b>`;
+                document.querySelector("#observation").innerHTML = `Observação: <b>${data.enrollment_observation}</b>`;
+                document.querySelector("#status").innerHTML = `Status: <b>${data.status ?? "Não avaliado"}</b>`;
 
-                modal.querySelector("#event-info").innerHTML = string;
-
-                modal.querySelector("#close-btn").addEventListener("click", () => {
-                    modal.style.display = "none";
+                document.querySelector("#container-modal-type-1").style.display = "flex";
+                document.querySelector("#close-btn").addEventListener("click", () => {
+                    document.querySelector("#container-modal-type-1").style.display = "none";
                 });
-            }))
-        })
-    })
+            }));
+        });
+    });
 
     document.querySelectorAll(".approved").forEach(btn => {
         btn.addEventListener("click", () => {
@@ -70,42 +77,74 @@ getEnrollments().then(data => {
                 headers: { token: userAuth.token },
                 method: "GET"
             }).then(res => res.json().then(data => {
-                console.log(data);
-                //Apenas mostra um toast
-            }))
-        })
-    })
+                new Toast("Deferimento realizado com sucesso!", "success", "short").show();
+                if (data) setTimeout(() => location.reload(), 2000);
+            }));
+        });
+    });
 
     document.querySelectorAll(".denied").forEach(btn => {
-        btn.addEventListener("click", () => {
-            let modal = document.querySelector("#container-modal");
-            modal.style.display = "flex";
+    btn.addEventListener("click", () => {
+        const modal = document.querySelector("#container-modal");
+        modal.style.display = "flex";
 
-            modal.querySelector("#close-btn").addEventListener("click", () => {
-                modal.style.display = "none";
-            });
+        modal.querySelector("#close-btn").onclick = () => {
+            modal.style.display = "none";
+        };
 
-            let form_d = document.querySelector("#form-d");
-            form_d.innerHTML += `<input type="hidden" name="id" value="${btn.value}">`;
-            form_d.addEventListener("submit", e => {
-                e.preventDefault();
+        const form_d = document.querySelector("#form-d");
 
-                fetch(`http://localhost/Sarau-Web/api/enrollments/addDismissed`, {
-                    headers: { token: userAuth.token },
-                    method: "POST",
-                    body: new FormData(form_d),
-                }).then(res => res.json().then(data => {
-                    new Toast(data.message, "success", "short").show();
-                    console.log(data)
-                }))
-            }) 
-        })
-    })
-})
+        const oldInput = form_d.querySelector('input[name="id"]');
+        if (oldInput) oldInput.remove();
+
+        const hidden = document.createElement("input");
+        hidden.type = "hidden";
+        hidden.name = "id";
+        hidden.value = btn.value;
+        form_d.appendChild(hidden);
+
+        form_d.onsubmit = e => {
+            e.preventDefault();
+            fetch(`http://localhost/Sarau-Web/api/enrollments/addDismissed`, {
+                headers: { token: userAuth.token },
+                method: "POST",
+                body: new FormData(form_d),
+            }).then(res => res.json().then(data => {
+                new Toast(data.message, "success", "short").show();
+                if (data) setTimeout(() => location.reload(), 2000);
+            }));
+            }
+        });
+    });
+}
+
+function updatePagination() {
+    const pagination = document.querySelector(".pagination");
+    const buttons = pagination.querySelectorAll("button");
+    const totalPages = Math.ceil(enrollments.length / perPage);
+
+    buttons.forEach(btn => btn.disabled = false);
+    buttons.forEach(btn => btn.classList.remove("active"));
+
+    buttons[1].textContent = currentPage;
+    buttons[1].classList.add("active");
+
+    buttons[0].disabled = currentPage === 1;
+    buttons[4].disabled = currentPage === totalPages;
+
+    buttons[0].onclick = () => { if(currentPage > 1) { currentPage--; renderEnrollments(); } };
+    buttons[4].onclick = () => { if(currentPage < totalPages) { currentPage++; renderEnrollments(); } };
+}
+
+// Fetch inicial
+getEnrollments().then(data => {
+    enrollments = data;
+    renderEnrollments();
+});
 
 function getEnrollments() {
     return fetch("http://localhost/Sarau-Web/api/enrollments/selectAll", {
         headers: { token: userAuth.token },
         method: "GET"
-    }).then(res => res.json())
-};
+    }).then(res => res.json());
+}
