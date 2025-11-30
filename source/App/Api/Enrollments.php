@@ -36,6 +36,22 @@ class Enrollments extends Api
             // "id_sector_artistic": number
 
     }
+
+    public function selectByIdUser() : void
+    {
+        $this->auth();
+        // $user = new User();
+        $enrollment = new Enrollment();
+        $this->back($enrollment->selectByIdUser($this->userAuth->id));
+        // RETURN:      
+            // "id": depende,
+            // "observation": "Algo aqui",
+            // "presentation_time": "00:00:00",
+            // "id_event": number,
+            // "id_user": number,
+            // "id_sector_artistic": number
+
+    }
     
     public function addApproved(array $data) : void
     {

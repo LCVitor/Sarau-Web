@@ -36,6 +36,7 @@ $route->group("null");
 $route->group("/enrollments");
 $route->get("/selectAll", "Enrollments:getEnrollments");
 $route->get("/selectById/{id}", "Enrollments:selectById");
+$route->get("/selectByIdUser", "Enrollments:selectByIdUser");
 $route->get("/addApproved/{id}", "Enrollments:addApproved");
 $route->post("/addDismissed", "Enrollments:addDismissed");
 $route->group("null");

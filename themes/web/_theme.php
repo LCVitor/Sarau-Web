@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?= url("assets/css/_shared/global.css"); ?>">
     <script type="module" src="<?= url("assets/js/web/login.js"); ?>" async></script>
     <script type="module" src="<?= url("assets/js/web/registragion.js"); ?>" async></script>
+    <script type="module" src="<?= url("assets/js/web/util.js"); ?>" async></script>
 </head>
 <body> 
     <div id="section">
@@ -30,11 +31,11 @@
     </div>
     
     <div class="content type-1">
-        <div class="section">
-            Coisas aqui!
+        <div id="container-imgs">
+            <img id="model" src="assets/img/img1.jfif" alt="#">
         </div>
-        <div class="section">
-            Coisas aqui!
+        <div id="description">
+            <p>Venha participar do maior evento cultural da cidade de Charqueadas! Junte-se a nós e venha demonstrar seus talentos.</p>
         </div>
     </div>
 

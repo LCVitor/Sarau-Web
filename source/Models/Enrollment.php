@@ -179,4 +179,66 @@ class Enrollment extends Model {
 
         return $result;
 }
+public function selectByIdUser(int $id_user): array
+{
+    $conn = Connect::getInstance();
+
+    $query = "
+        SELECT 
+            e.id AS enrollment_id,
+            e.observation,
+            e.presentation_time,
+
+            sa.name AS sector_name,
+
+            -- status
+            ap.id AS approved_id,
+            di.id AS denied_id,
+            di.description AS denied_description
+
+        FROM enrollment e
+        INNER JOIN sector_artistic sa ON sa.id = e.id_sector_artistic
+        LEFT JOIN approveds ap ON ap.id_enrollment = e.id
+        LEFT JOIN dismisseds di ON di.id_enrollment = e.id
+
+        WHERE e.id_user = :id_user
+    ";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bindValue(":id_user", $id_user); // sem PDO::PARAM_INT
+    $stmt->execute();
+
+    $results = $stmt->fetchAll(\PDO::FETCH_OBJ); // corrigido
+
+    $enrollments = [];
+
+    foreach ($results as $row) {
+
+        // Determinar status final
+        if (!empty($row->approved_id)) {
+            $status = "Deferido";
+        } elseif (!empty($row->denied_id)) {
+            $status = "Indeferido";
+        } else {
+            $status = "Pendente";
+        }
+
+        $enrollments[] = [
+            "id" => $row->enrollment_id,
+            "observation" => $row->observation,
+            "presentation_time" => $row->presentation_time,
+
+            "sector_name" => $row->sector_name,
+
+            "status" => $status,
+
+            "description_denied" => $status === "Indeferido"
+                ? $row->denied_description
+                : null
+        ];
+    }
+
+    return $enrollments;
+}
+
 }

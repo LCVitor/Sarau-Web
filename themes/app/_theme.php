@@ -15,6 +15,10 @@
     <?php if ($this->section("profile")): ?>
         <?= $this->section("profile"); ?>
     <?php endif; ?>
+    
+    <?php if ($this->section("registration")): ?>
+        <?= $this->section("registration"); ?>
+    <?php endif; ?>
 
 </head>
 <body>

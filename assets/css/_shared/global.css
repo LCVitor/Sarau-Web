@@ -104,8 +104,8 @@ COMPONENTES
 
 .button.type-1 {
     outline: none;
-    background-color: rgba(50, 139, 255, 0.726);
-    border: 1px solid rgb(0, 37, 85);
+    background-color: #7448e6b1;
+    border: 1px solid #3d2c6a;
     padding: 5px;
     color: #FFF;
     border-radius: 5px;
@@ -115,8 +115,8 @@ COMPONENTES
 }
 
 .button.type-1:hover, .button.type-1:focus {
-    color: #000;
-    background-color: #38ebf8;
+    color: #FFF;
+    border: 1px solid #9a7ee1a3;
 }
 
 .button.type-2 {
@@ -144,8 +144,8 @@ COMPONENTES
 }
 
 .button.type-3 {
-    background-color: #3ebd4d;
-    border: 1px solid #caffd7;
+    background-color: #cd87e7c5;
+    border: 1px solid #bc4ce5;
     padding: 5px;
     color: #FFF;
     border-radius: 5px;
@@ -164,9 +164,9 @@ COMPONENTES
 }
 
 .button.type-3:hover, .button.type-3:focus {
-    background-color: #56ff6aa3;
+    /* background-color: #daadeb; */
     color: #000;
-    border: 1px solid #00000096;
+    border: 1px solid #000;
 }
 
 .button.table {
