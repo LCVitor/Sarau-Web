@@ -31,7 +31,7 @@
         <a href="http://localhost/Sarau-Web/app/logout" class="special"><i class="fas fa-sign-out-alt"></i> Sair</a>
     </div>
     <div class="container-href">
-        <a href="<?= url("/app/"); ?>">Home</a>
+        <a id="alt" href="<?= url("/app/"); ?>">Home</a>
         <a href="<?= url("/app/eventos"); ?>">Eventos</a>
         <a href="<?= url("/app/inscrições"); ?>">Inscrições</a>
         <a href="<?= url("/app/perfil"); ?>">Perfil</a>
